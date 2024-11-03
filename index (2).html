@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose the Correct Word Exercise</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .sentence {
+            margin: 10px 0;
+        }
+        .result {
+            font-weight: bold;
+        }
+        select {
+            margin-left: 10px;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+    </style>
+    <script>
+        const answers = ['a', 'b', 'b', 'c', 'b', 'a', 'b', 'a'];
+
+        function checkAnswer(index, selectElement) {
+            const userAnswer = selectElement.value;
+            const resultSpan = document.getElementById(`result-${index}`);
+
+            if (userAnswer === answers[index]) {
+                resultSpan.textContent = '\u2714'; // Tick mark
+                resultSpan.className = 'correct';
+            } else {
+                resultSpan.textContent = '\u2716'; // Cross mark
+                resultSpan.className = 'incorrect';
+            }
+
+            updateOverallResult();
+        }
+
+        function updateOverallResult() {
+            let correctCount = 0;
+            answers.forEach((_, index) => {
+                const resultSpan = document.getElementById(`result-${index}`);
+                if (resultSpan.className === 'correct') {
+                    correctCount++;
+                }
+            });
+            const percentage = (correctCount / answers.length) * 100;
+            document.getElementById('overall-result').textContent = `You got ${correctCount} out of ${answers.length} correct (${percentage.toFixed(2)}%).`;
+        }
+    </script>
+</head>
+<body>
+    <h1>Choose the correct word to complete the sentences</h1>
+
+    <div class="sentence">
+        1. The role of the leader of the main 
+        <select onchange="checkAnswer(0, this)">
+            <option value="">--Choose--</option>
+            <option value="a">opposition</option>
+            <option value="b">representative</option>
+            <option value="c">satirical</option>
+        </select>
+        party is to challenge and criticise the actions of the government.
+        <span id="result-0"></span>
+    </div>
+
+    <div class="sentence">
+        2. Sadly, political 
+        <select onchange="checkAnswer(1, this)">
+            <option value="">--Choose--</option>
+            <option value="a">identity</option>
+            <option value="b">engagement</option>
+            <option value="c">emergence</option>
+        </select>
+        among young people is in decline.
+        <span id="result-1"></span>
+    </div>
+
+    <div class="sentence">
+        3. Although once seen as a 
+        <select onchange="checkAnswer(2, this)">
+            <option value="">--Choose--</option>
+            <option value="a">person</option>
+            <option value="b">figure</option>
+            <option value="c">protest</option>
+        </select>
+        of fun in his own party, Watson rose to be leader.
+        <span id="result-2"></span>
+    </div>
+
+    <div class="sentence">
+        4. The prime minister has announced 
+        <select onchange="checkAnswer(3, this)">
+            <option value="">--Choose--</option>
+            <option value="a">an election</option>
+            <option value="b">a petition</option>
+            <option value="c">a referendum</option>
+        </select>.
+        People won’t be voting for any political party. They’ll be voting on whether to stay in the European Union or not.
+        <span id="result-3"></span>
+    </div>
+
+    <div class="sentence">
+        5. Alleged vote-
+        <select onchange="checkAnswer(4, this)">
+            <option value="">--Choose--</option>
+            <option value="a">striking</option>
+            <option value="b">rigging</option>
+            <option value="c">lining</option>
+        </select>
+        was not proved, so the result stood and the People’s Party formed the new government.
+        <span id="result-4"></span>
+    </div>
+
+    <div class="sentence">
+        6. It was a 
+        <select onchange="checkAnswer(5, this)">
+            <option value="">--Choose--</option>
+            <option value="a">landslide</option>
+            <option value="b">hollow</option>
+            <option value="c">consensus</option>
+        </select>
+        victory! The party won 80% of seats in the new parliament and celebrated wildly!
+        <span id="result-5"></span>
+    </div>
+
+    <div class="sentence">
+        7. I didn’t 
+        <select onchange="checkAnswer(6, this)">
+            <option value="">--Choose--</option>
+            <option value="a">throw</option>
+            <option value="b">cast</option>
+            <option value="c">set</option>
+        </select>
+        my vote in the last election. I wish I had voted for somebody.
+        <span id="result-6"></span>
+    </div>
+
+    <div class="sentence">
+        8. In a recent opinion 
+        <select onchange="checkAnswer(7, this)">
+            <option value="">--Choose--</option>
+            <option value="a">poll</option>
+            <option value="b">lobby</option>
+            <option value="c">petition</option>
+        </select>,
+        the government’s position was shown to be very unpopular.
+        <span id="result-7"></span>
+    </div>
+
+    <div id="overall-result" class="result">You got 0 out of 8 correct (0.00%).</div>
+</body>
+</html>
